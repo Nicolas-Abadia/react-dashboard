@@ -7,7 +7,7 @@ export default function WeatherCard() {
   useEffect(
     () => {
       setError(null);
-      fetch("https://api.openweathermap.org/data/2.5/weather?q=davis&units=metric&appid=29dd985490c23fdfe7b9bdddcc07c2df")
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=davis&units=metric&appid=${import.meta.env.VITE_WEATHER_API_KEY}`)
         .then(res => res.json())
         .then(data => {
           setWeather(data);
