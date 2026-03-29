@@ -10,8 +10,11 @@ export default function WeatherCard() {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=davis&units=metric&appid=${import.meta.env.VITE_WEATHER_API_KEY}`)
         .then(res => res.json())
         .then(data => {
+          if (data.cod !== 200) {
+            setError("Weather unavailable right now.");
+            return;
+          }
           setWeather(data);
-          //console.log(data);
         })
         .catch(err => {
           setError("Failed fo fetch weather data!")
